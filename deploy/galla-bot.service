@@ -1,0 +1,24 @@
+# systemd xizmati — bot server qayta yoqilganda yoki yiqilganda avtomatik qayta ishga tushadi.
+#
+# O'rnatish (USER va yo'lni o'zingiznikiga almashtiring):
+#   sudo cp deploy/galla-bot.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now galla-bot
+#   journalctl -u galla-bot -f        # loglarni kuzatish
+
+[Unit]
+Description=G'alla monitoringi Telegram boti
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=USER
+WorkingDirectory=/home/USER/galla-bot
+ExecStart=/home/USER/galla-bot/venv/bin/python bot.py
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

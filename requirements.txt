@@ -1,0 +1,5 @@
+pyTelegramBotAPI>=4.22,<5
+gspread>=6.0,<7
+google-auth>=2.0
+python-dotenv>=1.0
+tzdata>=2024.1
